@@ -1,0 +1,26 @@
+﻿@using SalesForecasting.Services
+@model IEnumerable<SalesByState>
+
+<h1>Incremented Sales for @ViewBag.Year</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>State</th>
+            <th>Total Sales</th>
+            <th>Increment</th>
+            <th>Incremented Sales</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.State</td>
+                <td>@item.TotalSales</td>
+                <td>@ViewBag.PercentageIncrement%</td>
+                <td>@(item.TotalSales * (1 + ViewBag.PercentageIncrement / 100))</td>
+            </tr>
+        }
+    </tbody>
+</table>
