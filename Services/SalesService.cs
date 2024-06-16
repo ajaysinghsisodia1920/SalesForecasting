@@ -73,7 +73,7 @@ namespace SalesForecasting.Services
         }
 
 
-        public IEnumerable<SalesByState> GetForecastedSalesByYearAsync(int year, decimal percentageIncrease)
+        public IEnumerable<SalesByState> GetForecastedSalesByYear(int year, decimal percentageIncrease)
         {
             var salesByYear = GetSalesByYear(year);
 
@@ -84,6 +84,11 @@ namespace SalesForecasting.Services
             });
 
             return forecastedSales;
+        }
+
+        public IEnumerable<string> GetAllStates()
+        {
+            return _dbContext.Orders.Select(s => s.State).Distinct().ToList<string>();
         }
     }
 

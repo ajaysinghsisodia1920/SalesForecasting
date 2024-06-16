@@ -1,7 +1,8 @@
 ﻿@using SalesForecasting.Services
 @model IEnumerable<SalesByState>
 
-<h1>Incremented Sales for @ViewBag.Year</h1>
+<h1>Incremented Sales for : @ViewBag.Year</h1>
+<h2>Incremeted total sales: @(ViewBag.TotalSales*(1 + ViewBag.PercentageIncrement / 100))</h2>
 
 <table class="table">
     <thead>

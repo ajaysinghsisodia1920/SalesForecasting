@@ -4,7 +4,7 @@
     ViewBag.Title = "Sales Forecasting";
 }
 
-<h2 class="my-4">Sales Forecasting</h2>
+<h2 class="my-4">User Story</h2>
 
 @using (Html.BeginForm("SalesByYear", "Sales", FormMethod.Post, new { @class = "mb-3" }))
 {
@@ -12,7 +12,7 @@
         <h3>1. Query Sales By Year</h3>
         <div class="form-group">
             <label for="Year">Year:</label>
-            @Html.TextBoxFor(m => m.Year, new { @class = "form-control" })
+            @Html.TextBox("Year",null, new { @class = "form-control" })
         </div>
         <button type="submit" class="btn btn-primary">Query Sales</button>
     </div>
@@ -21,25 +21,90 @@
 @using (Html.BeginForm("ApplyIncrement", "Sales", FormMethod.Post, new { @class = "mb-3" }))
 {
     <div class="form-box border p-4 mb-3 bg-light rounded">
-        <h3>2. Apply Increment Percentage</h3>
+        <h3>2.1 Apply Increment Percentage</h3>
         <div class="form-group">
             <label for="Year">Year:</label>
-            @Html.TextBoxFor(m => m.Year, new { @class = "form-control" })
+            @Html.TextBox("Year",null, new { @class = "form-control" })
         </div>
         <div class="form-group">
             <label for="percentageIncrement">Increment Percentage:</label>
-            @Html.TextBoxFor(m => m.percentageIncrement, new { @class = "form-control" })
+            @Html.TextBox("percentageIncrement", null, new { @class = "form-control" })
         </div>
         <button type="submit" class="btn btn-primary">Apply Increment</button>
     </div>
 }
 
-@using (Html.BeginForm("ExportCsv", "Sales", FormMethod.Post, new { @class = "mb-3" }))
+@using (Html.BeginForm("ApplyIncrementOnState", "Sales", FormMethod.Post, new { @class = "mb-3" }))
+{
+    <div class="form-box border p-4 mb-3 bg-light rounded">
+        <h3>2.2 Apply Increment Percentage on State</h3>
+        <div class="form-group">
+            <label for="Year">Year:</label>
+            @Html.TextBox("Year", null, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="State">State:</label>
+            @Html.DropDownList("State", (SelectList)ViewBag.States, "Select State", new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="percentageIncrement">Increment Percentage:</label>
+            @Html.TextBox("percentageIncrement", null, new { @class = "form-control" })
+        </div>
+        <button type="submit" class="btn btn-primary">Apply Increment</button>
+    </div>
+}
+
+
+
+@using (Html.BeginForm("DownloadForecastedData", "Sales", FormMethod.Post, new { @class = "mb-3" }))
 {
     <div class="form-box border p-4 mb-3 bg-light rounded">
         <h3>3. Export CSV</h3>
-        <input type="hidden" name="Year" value="@Model.Year" />
-        <input type="hidden" name="IncrementPercentage" value="@Model.percentageIncrement" />
+        <div class="form-group">
+            <label for="Year">Year:</label>
+            @Html.TextBox("Year", null, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="percentageIncrement">Increment Percentage:</label>
+            @Html.TextBox("percentageIncrement", null, new { @class = "form-control" })
+        </div>
+
         <button type="submit" class="btn btn-success">Export to CSV</button>
     </div>
 }
+
+<h2 class="my-4">Bonus Story</h2>
+
+@using (Html.BeginForm("SalesAndForecastedChart", "Sales", FormMethod.Get, new { @class = "mb-3" }))
+{
+    <div class="form-box border p-4 mb-3 bg-light rounded">
+        <h3>1. Show Actual and Forecasted Sales for an year</h3>
+        <div class="form-group">
+            <label for="Year">Year:</label>
+            @Html.TextBox("year", null, new { @class = "form-control", id = "Year" })
+        </div>
+        <div class="form-group">
+            <label for="percentageIncrement">Increment Percentage:</label>
+            @Html.TextBox("percentageIncrease", null, new { @class = "form-control", id = "percentageIncrement" })
+        </div>
+        <button type="submit" class="btn btn-primary">Apply Increment</button>
+    </div>
+}
+
+@using (Html.BeginForm("SalesAndForecastedChartByState", "Sales", FormMethod.Get, new { @class = "mb-3" }))
+{
+    <div class="form-box border p-4 mb-3 bg-light rounded">
+        <h3>2. Show Actual and Forecasted Sales for an year by State</h3>
+        <div class="form-group">
+            <label for="Year">Year:</label>
+            @Html.TextBox("year", null, new { @class = "form-control", id = "Year" })
+        </div>
+        <div class="form-group">
+            <label for="percentageIncrement">Increment Percentage:</label>
+            @Html.TextBox("percentageIncrease", null, new { @class = "form-control", id = "percentageIncrement" })
+        </div>
+        <button type="submit" class="btn btn-primary">Apply Increment</button>
+    </div>
+}
+
+
